@@ -1,5 +1,7 @@
 # Wurst Client v7
 
+## This is a modified version of wurst that changes the prefix to ";" and enables to specify what enchants you want with the ";enchant" command
+
 ## Downloads (for users)
 
 https://www.wurstclient.net/download/
