@@ -36,7 +36,7 @@ public abstract class ContainerScreen54Mixin
 	private final AutoStealHack autoSteal =
 		WurstClient.INSTANCE.getHax().autoStealHack;
 	private int mode;
-	
+
 	public ContainerScreen54Mixin(WurstClient wurst,
 		GenericContainerScreenHandler container,
 		PlayerInventory playerInventory, Text name)
@@ -54,11 +54,7 @@ public abstract class ContainerScreen54Mixin
 		
 		if(autoSteal.areButtonsVisible())
 		{
-			addButton(new ButtonWidget(x + backgroundWidth - 108, y + 4, 50, 12,
-				new LiteralText("Steal"), b -> steal()));
-			
-			addButton(new ButtonWidget(x + backgroundWidth - 56, y + 4, 50, 12,
-				new LiteralText("Store"), b -> store()));
+
 		}
 		
 		if(autoSteal.isEnabled())
