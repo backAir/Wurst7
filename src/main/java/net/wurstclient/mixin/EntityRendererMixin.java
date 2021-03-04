@@ -7,6 +7,7 @@
  */
 package net.wurstclient.mixin;
 
+import net.wurstclient.util.ChatUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -45,7 +46,8 @@ public abstract class EntityRendererMixin<T extends Entity>
             text = WurstClient.INSTANCE.getHax().healthTagsHack
                     .addHealth((LivingEntity)entity, text);
 
-
+        wurstRenderLabelIfPresent(entity, text, matrixStack,
+                vertexConsumerProvider, i);
         ci.cancel();
     }
 
@@ -77,8 +79,8 @@ public abstract class EntityRendererMixin<T extends Entity>
         {
             double distance = WurstClient.MC.player.distanceTo(entity);
 
-            if(distance > 10)
-                scale *= distance / 10;
+
+                scale = 0;
         }
 
         matrixStack.scale(-scale, -scale, scale);
