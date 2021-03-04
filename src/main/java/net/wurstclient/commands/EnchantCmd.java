@@ -31,187 +31,221 @@ public final class EnchantCmd extends Command
 		if(!MC.player.abilities.creativeMode)
 			throw new CmdError("Creative mode only.");
 
-		if(args.length > 1) {
-			ChatUtils.message("args: " + args[0]+" "+args[1]);
+			try {
+				if (args.length > 1) {
 
 
-			ChatUtils.message((args[0]));
-			int hello = Integer.parseInt(args[1]);
+					int hello = Integer.parseInt(args[1]);
 
-			for(Enchantment enchantment : Registry.ENCHANTMENT)
-			{
+					for (Enchantment enchantment : Registry.ENCHANTMENT) {
 
-				if(args[0].toLowerCase().equals("silk_touch")&&enchantment == Enchantments.SILK_TOUCH) {
+						if (args[0].toLowerCase().equals("silk_touch") && enchantment == Enchantments.SILK_TOUCH) {
 
-					MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+
+							return;}
+						if (args[0].toLowerCase().equals("protection") && enchantment == Enchantments.PROTECTION) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("sweeping") && enchantment == Enchantments.SWEEPING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("fire_protection") && enchantment == Enchantments.FIRE_PROTECTION) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("quick_charge") && enchantment == Enchantments.QUICK_CHARGE) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("channeling") && enchantment == Enchantments.CHANNELING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("piercing") && enchantment == Enchantments.PIERCING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("infinity") && enchantment == Enchantments.INFINITY) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("vanishing_curse") && enchantment == Enchantments.VANISHING_CURSE) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("punch") && enchantment == Enchantments.PUNCH) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("piercing") && enchantment == Enchantments.PIERCING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("mending") && enchantment == Enchantments.MENDING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("multishot") && enchantment == Enchantments.MULTISHOT) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("impaling") && enchantment == Enchantments.IMPALING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("riptide") && enchantment == Enchantments.RIPTIDE) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("loyalty") && enchantment == Enchantments.LOYALTY) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("lure") && enchantment == Enchantments.LURE) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("luck_of_the_sea") && enchantment == Enchantments.LUCK_OF_THE_SEA) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("flame") && enchantment == Enchantments.FLAME) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("power") && enchantment == Enchantments.POWER) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("efficiency") && enchantment == Enchantments.EFFICIENCY) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("unbreaking") && enchantment == Enchantments.UNBREAKING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("fortune") && enchantment == Enchantments.FORTUNE) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("feather_falling") && enchantment == Enchantments.FEATHER_FALLING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("looting") && enchantment == Enchantments.LOOTING) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("fire_aspect") && enchantment == Enchantments.FIRE_ASPECT) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("bane_of_arthropods") && enchantment == Enchantments.BANE_OF_ARTHROPODS) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("blast_protection") && enchantment == Enchantments.BLAST_PROTECTION) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("projectile_protection") && enchantment == Enchantments.PROJECTILE_PROTECTION) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("knockback") && enchantment == Enchantments.KNOCKBACK) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("smite") && enchantment == Enchantments.SMITE) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("sharpness") && enchantment == Enchantments.SHARPNESS) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("respiration") && enchantment == Enchantments.RESPIRATION) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("aqua_affinity") && enchantment == Enchantments.AQUA_AFFINITY) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("soul_speed") && enchantment == Enchantments.SOUL_SPEED) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("binding_curse") && enchantment == Enchantments.BINDING_CURSE) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("thorns") && enchantment == Enchantments.THORNS) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("frost_walker") && enchantment == Enchantments.FROST_WALKER) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+						if (args[0].toLowerCase().equals("depth_strider") && enchantment == Enchantments.DEPTH_STRIDER) {
+
+							MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+							ChatUtils.message("Item enchanted with "+args[0]+" "+args[1]);
+							return;}
+
+
+					}
+
+
 					throw new CmdSyntaxError();
 				}
-				if(args[0].toLowerCase().equals("protection")&&enchantment == Enchantments.PROTECTION) {
-
-					MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-					throw new CmdSyntaxError();
-				}
-				if(args[0].toLowerCase().equals("sweeping")&&enchantment == Enchantments.SWEEPING) {
-
-					MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-					throw new CmdSyntaxError();
-				}
-				if(args[0].toLowerCase().equals("fire_protection")&&enchantment == Enchantments.FIRE_PROTECTION) {
-
-					MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-					throw new CmdSyntaxError();
-				}
-				if(args[0].toLowerCase().equals("quick_charge")&&enchantment == Enchantments.QUICK_CHARGE) {
-
-					MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-					throw new CmdSyntaxError();
-				}
-				if(args[0].toLowerCase().equals("channeling")&&enchantment == Enchantments.CHANNELING) {
-
-					MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-					throw new CmdSyntaxError();
-				}
-				if(args[0].toLowerCase().equals("piercing")&&enchantment == Enchantments.PIERCING) {
-
-					MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-					throw new CmdSyntaxError();
-				}
-				if(args[0].toLowerCase().equals("infinity")&&enchantment == Enchantments.INFINITY) {
-
-					MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-					throw new CmdSyntaxError();
-				}if(args[0].toLowerCase().equals("vanishing_curse")&&enchantment == Enchantments.VANISHING_CURSE) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("punch")&&enchantment == Enchantments.PUNCH) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("piercing")&&enchantment == Enchantments.PIERCING) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("mending")&&enchantment == Enchantments.MENDING) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("multishot")&&enchantment == Enchantments.MULTISHOT) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("impaling")&&enchantment == Enchantments.IMPALING) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("riptide")&&enchantment == Enchantments.RIPTIDE) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("loyalty")&&enchantment == Enchantments.LOYALTY) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("lure")&&enchantment == Enchantments.LURE) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("luck_of_the_sea")&&enchantment == Enchantments.LUCK_OF_THE_SEA) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("flame")&&enchantment == Enchantments.FLAME) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("power")&&enchantment == Enchantments.POWER) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("efficiency")&&enchantment == Enchantments.EFFICIENCY) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("unbreaking")&&enchantment == Enchantments.UNBREAKING) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("fortune")&&enchantment == Enchantments.FORTUNE) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("feather_falling")&&enchantment == Enchantments.FEATHER_FALLING) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("looting")&&enchantment == Enchantments.LOOTING) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("fire_aspect")&&enchantment == Enchantments.FIRE_ASPECT) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("bane_of_arthropods")&&enchantment == Enchantments.BANE_OF_ARTHROPODS) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("blast_protection")&&enchantment == Enchantments.BLAST_PROTECTION) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("projectile_protection")&&enchantment == Enchantments.PROJECTILE_PROTECTION) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("knockback")&&enchantment == Enchantments.KNOCKBACK) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("smite")&&enchantment == Enchantments.SMITE) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("sharpness")&&enchantment == Enchantments.SHARPNESS) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("respiration")&&enchantment == Enchantments.RESPIRATION) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("aqua_affinity")&&enchantment == Enchantments.AQUA_AFFINITY) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("soul_speed")&&enchantment == Enchantments.SOUL_SPEED) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("binding_curse")&&enchantment == Enchantments.BINDING_CURSE) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("thorns")&&enchantment == Enchantments.THORNS) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("frost_walker")&&enchantment == Enchantments.FROST_WALKER) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
-				throw new CmdSyntaxError();
-			}if(args[0].toLowerCase().equals("depth_strider")&&enchantment == Enchantments.DEPTH_STRIDER) {
-
-				MC.player.inventory.getMainHandStack().addEnchantment(enchantment, 1 * hello);
+			}catch(Exception e) {
 				throw new CmdSyntaxError();
 			}
 
-
-
-			}
-
-			throw new CmdSyntaxError();
-		}
 		ItemStack stack = getHeldItem();
 		enchant(stack);
 
