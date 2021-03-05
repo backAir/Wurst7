@@ -48,7 +48,7 @@ public abstract class EntityRendererMixin<T extends Entity>
 
         wurstRenderLabelIfPresent(entity, text, matrixStack,
                 vertexConsumerProvider, i);
-        ci.cancel();
+
     }
 
     /**
@@ -74,30 +74,12 @@ public abstract class EntityRendererMixin<T extends Entity>
         matrixStack.translate(0.0D, f, 0.0D);
         matrixStack.multiply(this.dispatcher.getRotation());
 
-        float scale = 0.025F;
-        if(nameTagsHack.isEnabled())
-        {
-            double distance = WurstClient.MC.player.distanceTo(entity);
 
-
-                scale = 0;
-        }
-
-        matrixStack.scale(-scale, -scale, scale);
 
         Matrix4f matrix4f = matrixStack.peek().getModel();
-        float g = WurstClient.MC.options.getTextBackgroundOpacity(0.25F);
-        int k = (int)(g * 255.0F) << 24;
 
-        TextRenderer textRenderer = this.getFontRenderer();
-        float h = -textRenderer.getWidth(text) / 2;
 
-        textRenderer.draw(text.asOrderedText(), h, j, 553648127, false,
-                matrix4f, vertexConsumerProvider, bl, k, i);
 
-        if(bl)
-            textRenderer.draw(text.asOrderedText(), h, j, -1, false, matrix4f,
-                    vertexConsumerProvider, false, 0, i);
 
         matrixStack.pop();
     }
