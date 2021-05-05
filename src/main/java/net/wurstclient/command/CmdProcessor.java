@@ -9,6 +9,7 @@ package net.wurstclient.command;
 
 import java.util.Arrays;
 
+import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.util.crash.CrashException;
 import net.minecraft.util.crash.CrashReport;
 import net.minecraft.util.crash.CrashReportSection;
@@ -16,6 +17,11 @@ import net.wurstclient.WurstClient;
 import net.wurstclient.events.ChatOutputListener;
 import net.wurstclient.hacks.TooManyHaxHack;
 import net.wurstclient.util.ChatUtils;
+import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
+import net.wurstclient.SearchTags;
+import net.wurstclient.command.CmdException;
+import net.wurstclient.command.CmdSyntaxError;
+import net.wurstclient.command.Command;
 
 public final class CmdProcessor implements ChatOutputListener
 {
@@ -34,6 +40,7 @@ public final class CmdProcessor implements ChatOutputListener
 		
 		String message = event.getOriginalMessage().trim();
 		if(!message.startsWith("."))
+
 			return;
 		
 		event.cancel();

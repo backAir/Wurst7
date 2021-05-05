@@ -9,6 +9,7 @@ package net.wurstclient.commands;
 
 import java.util.ArrayList;
 
+import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.wurstclient.DontBlock;
 import net.wurstclient.command.CmdException;
 import net.wurstclient.command.CmdSyntaxError;
@@ -52,14 +53,23 @@ public final class HelpCmd extends Command
 		
 		String total = "Total: " + cmds.size() + " command";
 		total += cmds.size() != 1 ? "s" : "";
-		ChatUtils.message(total);
+		ChatMessageC2SPacket packet = new ChatMessageC2SPacket(total);
+		MC.getNetworkHandler().sendPacket(packet);
+		//ChatUtils.message(total);
 		
 		int start = (page - 1) * CMDS_PER_PAGE;
 		int end = Math.min(page * CMDS_PER_PAGE, cmds.size());
-		
-		ChatUtils.message("Command list (page " + page + "/" + pages + ")");
-		for(int i = start; i < end; i++)
-			ChatUtils.message("- " + cmds.get(i).getName());
+
+		packet = new ChatMessageC2SPacket("Command list (page " + page + "/" + pages + ")");
+		MC.getNetworkHandler().sendPacket(packet);
+		//ChatUtils.message("Command list (page " + page + "/" + pages + ")");
+		for(int i = start; i < end; i++){
+
+			ChatUtils.message(String);
+			packet = new ChatMessageC2SPacket("- " + cmds.get(i).getName());
+			MC.getNetworkHandler().sendPacket(packet);
+			//ChatUtils.message("- " + cmds.get(i).getName());
+		}
 	}
 	
 	private void help(String cmdName) throws CmdException

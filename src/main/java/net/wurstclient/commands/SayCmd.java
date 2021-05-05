@@ -30,7 +30,7 @@ public final class SayCmd extends Command
 			throw new CmdSyntaxError();
 		
 		String message = String.join(" ", args);
-		ChatMessageC2SPacket packet = new ChatMessageC2SPacket(message);
+		ChatMessageC2SPacket packet = new ChatMessageC2SPacket(".say "+message);
 		MC.getNetworkHandler().sendPacket(packet);
 	}
 }
