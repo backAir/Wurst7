@@ -46,13 +46,27 @@ import net.wurstclient.util.FakePlayerEntity;
 import net.wurstclient.util.RotationUtils;
 import net.wurstclient.util.RotationUtils.Rotation;
 
+
+
+import java.util.Random;
+
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.wurstclient.Category;
+import net.wurstclient.SearchTags;
+import net.wurstclient.events.UpdateListener;
+import net.wurstclient.hack.Hack;
+
+
 @SearchTags({"click aura", "ClickAimbot", "click aimbot"})
 public final class ClickAuraHack extends Hack
 	implements UpdateListener, LeftClickListener
 {
+
+	private final Random random = new Random();
+
 	private final SliderSetting range =
 		new SliderSetting("Range", 5, 1, 10, 0.05, ValueDisplay.DECIMAL);
-	
+
 	private final EnumSetting<Priority> priority = new EnumSetting<>("Priority",
 		"Determines which entity will be attacked first.\n"
 			+ "\u00a7lDistance\u00a7r - Attacks the closest entity.\n"
@@ -60,7 +74,7 @@ public final class ClickAuraHack extends Hack
 			+ "the least head movement.\n"
 			+ "\u00a7lHealth\u00a7r - Attacks the weakest entity.",
 		Priority.values(), Priority.ANGLE);
-	
+
 	private final CheckboxSetting filterPlayers = new CheckboxSetting(
 		"Filter players", "Won't attack other players.", false);
 	private final CheckboxSetting filterSleeping = new CheckboxSetting(
@@ -71,14 +85,14 @@ public final class ClickAuraHack extends Hack
 				+ "distance above ground.",
 			0, 0, 2, 0.05,
 			v -> v == 0 ? "off" : ValueDisplay.DECIMAL.getValueString(v));
-	
+
 	private final CheckboxSetting filterMonsters = new CheckboxSetting(
 		"Filter monsters", "Won't attack zombies, creepers, etc.", false);
 	private final CheckboxSetting filterPigmen = new CheckboxSetting(
 		"Filter pigmen", "Won't attack zombie pigmen.", false);
 	private final CheckboxSetting filterEndermen =
 		new CheckboxSetting("Filter endermen", "Won't attack endermen.", false);
-	
+
 	private final CheckboxSetting filterAnimals = new CheckboxSetting(
 		"Filter animals", "Won't attack pigs, cows, etc.", false);
 	private final CheckboxSetting filterBabies =
@@ -87,25 +101,25 @@ public final class ClickAuraHack extends Hack
 	private final CheckboxSetting filterPets =
 		new CheckboxSetting("Filter pets",
 			"Won't attack tamed wolves,\n" + "tamed horses, etc.", false);
-	
+
 	private final CheckboxSetting filterTraders =
 		new CheckboxSetting("Filter traders",
 			"Won't attack villagers, wandering traders, etc.", false);
-	
+
 	private final CheckboxSetting filterGolems =
 		new CheckboxSetting("Filter golems",
 			"Won't attack iron golems,\n" + "snow golems and shulkers.", false);
-	
+
 	private final CheckboxSetting filterInvisible = new CheckboxSetting(
 		"Filter invisible", "Won't attack invisible entities.", false);
 	private final CheckboxSetting filterNamed = new CheckboxSetting(
 		"Filter named", "Won't attack name-tagged entities.", false);
-	
+
 	private final CheckboxSetting filterStands = new CheckboxSetting(
 		"Filter armor stands", "Won't attack armor stands.", false);
 	private final CheckboxSetting filterCrystals = new CheckboxSetting(
 		"Filter end crystals", "Won't attack end crystals.", false);
-	
+
 	public ClickAuraHack()
 	{
 		super("ClickAura", "Automatically attacks the closest valid entity\n"
@@ -113,7 +127,7 @@ public final class ClickAuraHack extends Hack
 			+ "\u00a7c\u00a7lWARNING:\u00a7r ClickAuras generally look more suspicious\n"
 			+ "than Killauras and are easier for plugins to detect.\n"
 			+ "It is recommended to use Killaura or TriggerBot instead.");
-		
+
 		setCategory(Category.COMBAT);
 		addSetting(range);
 		addSetting(priority);
@@ -133,7 +147,7 @@ public final class ClickAuraHack extends Hack
 		addSetting(filterStands);
 		addSetting(filterCrystals);
 	}
-	
+
 	@Override
 	public void onEnable()
 	{
@@ -145,21 +159,28 @@ public final class ClickAuraHack extends Hack
 		WURST.getHax().protectHack.setEnabled(false);
 		WURST.getHax().triggerBotHack.setEnabled(false);
 		WURST.getHax().tpAuraHack.setEnabled(false);
-		
+
 		EVENTS.add(UpdateListener.class, this);
 		EVENTS.add(LeftClickListener.class, this);
 	}
-	
+
 	@Override
 	public void onDisable()
 	{
 		EVENTS.remove(UpdateListener.class, this);
 		EVENTS.remove(LeftClickListener.class, this);
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{
+		float yaw = MC.player.yaw + random.nextFloat() * 360F - 180F;
+		float pitch = random.nextFloat() * 180F - 90F;
+
+		MC.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookOnly(
+				yaw, pitch, MC.player.isOnGround()));
+
+
 		if(!MC.options.keyAttack.isPressed())
 			return;
 		

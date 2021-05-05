@@ -8,10 +8,12 @@
 package net.wurstclient.hacks;
 
 import java.util.Comparator;
+import java.util.Random;
 import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -48,18 +50,21 @@ import net.wurstclient.settings.SliderSetting.ValueDisplay;
 import net.wurstclient.util.FakePlayerEntity;
 import net.wurstclient.util.RenderUtils;
 import net.wurstclient.util.RotationUtils;
+import java.util.Random;
+
 
 @SearchTags({"kill aura", "ForceField", "force field", "CrystalAura",
 	"crystal aura", "AutoCrystal", "auto crystal"})
 public final class KillauraHack extends Hack
 	implements UpdateListener, PostMotionListener, RenderListener
 {
+	private final Random random = new Random();
 	private final SliderSetting range = new SliderSetting("Range",
 		"Determines how far Killaura will reach\n" + "to attack entities.\n"
 			+ "Anything that is further away than the\n"
 			+ "specified value will not be attacked.",
 		5, 1, 10, 0.05, ValueDisplay.DECIMAL);
-	
+
 	private final EnumSetting<Priority> priority = new EnumSetting<>("Priority",
 		"Determines which entity will be attacked first.\n"
 			+ "\u00a7lDistance\u00a7r - Attacks the closest entity.\n"
@@ -67,10 +72,10 @@ public final class KillauraHack extends Hack
 			+ "the least head movement.\n"
 			+ "\u00a7lHealth\u00a7r - Attacks the weakest entity.",
 		Priority.values(), Priority.ANGLE);
-	
+
 	private final CheckboxSetting filterPlayers = new CheckboxSetting(
 		"Filter players", "Won't attack other players.", false);
-	
+
 	private final CheckboxSetting filterSleeping =
 		new CheckboxSetting("Filter sleeping",
 			"Won't attack sleeping players.\n\n"
@@ -78,7 +83,7 @@ public final class KillauraHack extends Hack
 				+ "sleeping players on the ground to make them\n"
 				+ "look like corpses.",
 			false);
-	
+
 	private final SliderSetting filterFlying = new SliderSetting(
 		"Filter flying",
 		"Won't attack players that are at least\n"
@@ -87,48 +92,48 @@ public final class KillauraHack extends Hack
 			+ "player behind you to try and detect\n" + "your Killaura.",
 		0, 0, 2, 0.05,
 		v -> v == 0 ? "off" : ValueDisplay.DECIMAL.getValueString(v));
-	
+
 	private final CheckboxSetting filterMonsters = new CheckboxSetting(
 		"Filter monsters", "Won't attack zombies, creepers, etc.", false);
-	
+
 	private final CheckboxSetting filterPigmen = new CheckboxSetting(
 		"Filter pigmen", "Won't attack zombie pigmen.", false);
-	
+
 	private final CheckboxSetting filterEndermen =
 		new CheckboxSetting("Filter endermen", "Won't attack endermen.", false);
-	
+
 	private final CheckboxSetting filterAnimals = new CheckboxSetting(
 		"Filter animals", "Won't attack pigs, cows, etc.", false);
-	
+
 	private final CheckboxSetting filterBabies =
 		new CheckboxSetting("Filter babies",
 			"Won't attack baby pigs,\n" + "baby villagers, etc.", false);
-	
+
 	private final CheckboxSetting filterPets =
 		new CheckboxSetting("Filter pets",
 			"Won't attack tamed wolves,\n" + "tamed horses, etc.", false);
-	
+
 	private final CheckboxSetting filterTraders =
 		new CheckboxSetting("Filter traders",
 			"Won't attack villagers, wandering traders, etc.", false);
-	
+
 	private final CheckboxSetting filterGolems =
 		new CheckboxSetting("Filter golems",
 			"Won't attack iron golems,\n" + "snow golems and shulkers.", false);
-	
+
 	private final CheckboxSetting filterInvisible = new CheckboxSetting(
 		"Filter invisible", "Won't attack invisible entities.", false);
 	private final CheckboxSetting filterNamed = new CheckboxSetting(
 		"Filter named", "Won't attack name-tagged entities.", false);
-	
+
 	private final CheckboxSetting filterStands = new CheckboxSetting(
 		"Filter armor stands", "Won't attack armor stands.", false);
 	private final CheckboxSetting filterCrystals = new CheckboxSetting(
 		"Filter end crystals", "Won't attack end crystals.", false);
-	
+
 	private Entity target;
 	private Entity renderTarget;
-	
+
 	public KillauraHack()
 	{
 		super("Killaura", "Automatically attacks entities around you.");
@@ -151,7 +156,7 @@ public final class KillauraHack extends Hack
 		addSetting(filterStands);
 		addSetting(filterCrystals);
 	}
-	
+
 	@Override
 	protected void onEnable()
 	{
@@ -163,31 +168,37 @@ public final class KillauraHack extends Hack
 		WURST.getHax().protectHack.setEnabled(false);
 		WURST.getHax().triggerBotHack.setEnabled(false);
 		WURST.getHax().tpAuraHack.setEnabled(false);
-		
+
 		EVENTS.add(UpdateListener.class, this);
 		EVENTS.add(PostMotionListener.class, this);
 		EVENTS.add(RenderListener.class, this);
 	}
-	
+
 	@Override
 	protected void onDisable()
 	{
 		EVENTS.remove(UpdateListener.class, this);
 		EVENTS.remove(PostMotionListener.class, this);
 		EVENTS.remove(RenderListener.class, this);
-		
+
 		target = null;
 		renderTarget = null;
 	}
-	
+
 	@Override
 	public void onUpdate()
 	{
 		ClientPlayerEntity player = MC.player;
 		ClientWorld world = MC.world;
-		
-		if(player.getAttackCooldownProgress(0) < 1)
-			return;
+		float yaw = MC.player.yaw + random.nextFloat() * 360F - 180F;
+		float pitch = random.nextFloat() * 180F - 90F;
+
+		MC.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookOnly(yaw, pitch, MC.player.isOnGround()));
+
+
+		if(player.getAttackCooldownProgress(0) < 1){
+
+			return;}
 		
 		double rangeSq = Math.pow(range.getValue(), 2);
 		Stream<Entity> stream =
